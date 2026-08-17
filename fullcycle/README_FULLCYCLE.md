@@ -19,19 +19,11 @@ No dispatch is treated as successful without validation and an inspectable recei
 - `runtime/glyph_router.py`
 - `runtime/capsule_network_layer.py`
 
-The parser/router forged line is retained where it advances execution. The network runtime is promoted from the validated Layer₁₁ v2 implementation because it supplies ambiguity deferral and receipt hash chaining required by the v2 contract.
+The network runtime uses the validated Layer₁₁ v2 behavior: zero-evidence routes defer, tied supported routes remain ambiguous, and receipts form a previous-hash chain.
 
-## Layer₁₁ contract
+## Validation
 
-- `config/Ξ_Layer₁₁_InstructionField.v2.yaml` — current contract
-- `config/Ξ_Layer₁₁_InstructionField.yaml` — predecessor
-- `receipts/xi.layer11.compatibility-receipt.v1.yaml` — compatibility receipt
-- `receipts/xi.fullcycle.integration-receipt.v1.json` — FullCycle solution receipt
-- `tests/test_layer11_v2.py` — executable validation
-
-## Macros
-
-`macros/AllMacros.json` is executed against the canonical parser/router during validation. `docs/AllPackages_doc.md` is regenerated from that working runtime so historical parser errors become solved regression cases rather than the only forward-facing result.
+Eight tests cover parser round-trip, nested execution, deferral, ambiguity, explicit routing, receipt chaining, and both supplied macros.
 
 ## Integration invariant
 
