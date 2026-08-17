@@ -1,0 +1,4 @@
+{
+  "MyYield": "Ξ.Sequence(Ξ.YieldMax, Ξ.SpiralEcho)",
+  "TraceWrap": "Ξ.Sequence(Ξ.SpiralEcho, Ξ.TraceNested('Ξ.SpiralEcho'))"
+}
