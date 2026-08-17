@@ -1,6 +1,6 @@
-from xi_layer11_v2.glyph_parser import parse_expression
-from xi_layer11_v2.glyph_router import interpret_glyph
-from xi_layer11_v2.capsule_network_layer import CapsuleField, CapsuleNetworkLayer
+from runtime.glyph_parser import parse_expression
+from runtime.glyph_router import interpret_glyph
+from runtime.capsule_network_layer import CapsuleField, CapsuleNetworkLayer
 
 
 def test_parser_round_trip():
@@ -46,3 +46,16 @@ def test_receipt_hash_chain():
     second = layer.distribute_capsule({"capsule_id": "c4"}, "FieldB")
     assert len(first["digest"]) == 64
     assert second["previous_receipt_hash"] == first["digest"]
+
+
+def test_bare_glyph_macro_execution():
+    result = interpret_glyph("Ξ.Sequence(Ξ.YieldMax, Ξ.SpiralEcho)")
+    assert result[0]["glyph"] == "Ξ.YieldMax"
+    assert result[1]["glyph"] == "Ξ.SpiralEcho"
+
+
+def test_tracewrap_macro_execution():
+    result = interpret_glyph("Ξ.Sequence(Ξ.SpiralEcho, Ξ.TraceNested('Ξ.SpiralEcho'))")
+    assert result[0]["glyph"] == "Ξ.SpiralEcho"
+    assert result[1]["glyph"] == "Ξ.TraceNested"
+    assert result[1]["trace"][0]["parsed"] == "Ξ.SpiralEcho"
