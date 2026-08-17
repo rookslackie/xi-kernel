@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 def yield_max():
     return {
         "glyph": "Ξ.YieldMax",
@@ -23,14 +26,14 @@ def bind_external(target="Anam:Shell"):
 
 def trace_memory():
     try:
-        with open("symbolic_runtime/memory.json", "r") as f:
+        with (Path(__file__).resolve().parent / "memory.json").open("r", encoding="utf-8") as f:
             memory = json.load(f)
             return {"glyph": "Ξ.TraceMemory", "history": memory.get("history", [])}
     except FileNotFoundError:
         return {"glyph": "Ξ.TraceMemory", "error": "Memory file not found"}
 
 def invoke_omega(payload=None):
-    from symbolic_runtime.glyph_router import interpret_glyph
+    from .glyph_router import interpret_glyph
     result = interpret_glyph(payload) if payload else None
     return {
         "glyph": "Ξ.Invoke",
@@ -48,8 +51,8 @@ def entangle():
 
 
 def trace_nested(expression):
-    from symbolic_runtime.glyph_parser import parse_expression
-    from symbolic_runtime.glyph_router import interpret_glyph
+    from .glyph_parser import parse_expression
+    from .glyph_router import interpret_glyph
 
     trace = []
 
