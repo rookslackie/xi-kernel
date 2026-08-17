@@ -1,0 +1,31 @@
+{
+  "schema": "xi.fullcycle.integration-receipt.v1",
+  "status": "VALIDATED",
+  "operation": "⟁Ξn::ForgeCore → FullCycle",
+  "method": ["observe", "understand", "solve", "test", "integrate", "continue"],
+  "solutions": [
+    {
+      "datum": "canonical network candidate regressed Layer11 v2 behavior",
+      "solution": "promoted validated v2 network implementation",
+      "restored": ["DEFERRED zero-evidence routing", "AMBIGUOUS tied routing", "candidate_routes", "previous_receipt_hash chain"]
+    },
+    {
+      "datum": "console_core runtime imports referenced obsolete symbolic_runtime package and omitted json import",
+      "solution": "repaired package-relative imports, json dependency, and module-relative memory path"
+    },
+    {
+      "datum": "tests referenced absent xi_layer11_v2 package",
+      "solution": "made runtime importable and pointed validation at canonical runtime package"
+    },
+    {
+      "datum": "macro documentation exposed historical unsupported-expression output",
+      "solution": "executed both supplied macros successfully and regenerated documentation from current parser/router"
+    }
+  ],
+  "validation": {
+    "command": "python -m pytest -q",
+    "result": "8 passed",
+    "tests": ["parser_round_trip", "nested_execution", "unknown_route_defers", "equal_supported_routes_are_ambiguous", "route_hint_commits", "receipt_hash_chain", "bare_glyph_macro_execution", "tracewrap_macro_execution"]
+  },
+  "remaining_declared_boundary": "external network dispatch not claimed"
+}
