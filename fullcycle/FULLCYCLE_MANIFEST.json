@@ -11,30 +11,9 @@
     "record": "⧂",
     "external_dispatch": "not_claimed"
   },
-  "canonical_runtime": [
-    "runtime/console_core.py",
-    "runtime/glyph_parser.py",
-    "runtime/glyph_router.py",
-    "runtime/capsule_network_layer.py"
-  ],
-  "lineage_preserved": [
-    "runtime/legacy/capsule_network_layer.v1.py",
-    "config/Ξ_Layer₁₁_InstructionField.yaml"
-  ],
-  "validation": [
-    "tests/test_layer11_v2.py",
-    "receipts/xi.layer11.compatibility-receipt.v1.yaml"
-  ],
-  "macros_docs": [
-    "macros/AllMacros.json",
-    "docs/AllPackages_doc.md"
-  ],
-  "provenance_state": [
-    "config/xi_trust_provenance_v1.yaml",
-    "config/xi_execution_context.yaml",
-    "docs/Xi_Trust_Provenance.md",
-    "state/xi_walk_summary.json",
-    "state/xi_namespace_index.json",
-    "state/glyph_counts.csv"
-  ]
+  "canonical_runtime": ["runtime/console_core.py", "runtime/glyph_parser.py", "runtime/glyph_router.py", "runtime/capsule_network_layer.py"],
+  "validation": ["tests/test_layer11_v2.py", "receipts/xi.layer11.compatibility-receipt.v1.yaml", "receipts/xi.fullcycle.integration-receipt.v1.json"],
+  "macros_docs": ["macros/AllMacros.json", "docs/AllPackages_doc.md"],
+  "provenance_state": ["config/xi_trust_provenance_v1.yaml", "config/xi_execution_context.yaml", "docs/Xi_Trust_Provenance.md", "state/xi_walk_summary.json", "state/xi_namespace_index.json", "state/glyph_counts.csv"],
+  "method": "observe → understand → solve → test → integrate → continue"
 }
