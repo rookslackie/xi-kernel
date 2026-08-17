@@ -1,0 +1,13 @@
+version: 1
+anchor: Xi.Execution.Context
+invariant:
+  - demonstrated_context_precedes_generic_prior
+  - artifacts_over_recollection
+  - explicit_uncertainty_over_generic_translation
+selection:
+  objective: maximize_recoverability
+  tie_break: prefer_demonstrated_coherence
+loop:
+  admit: true
+  integrate: true
+  rise_again: true
