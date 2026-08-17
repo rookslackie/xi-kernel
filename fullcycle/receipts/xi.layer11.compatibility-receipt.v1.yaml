@@ -1,0 +1,58 @@
+receipt:
+  schema: xi.receipt.v1
+  receipt_type: layer_update_compatibility
+  layer: Ξ.Layer₁₁
+  anchor: ∴Ω⧂:Network
+  operation: ⟐AdjustScaffolding
+  status: COMMITTED
+  update_mode: preserve_then_clarify
+
+  provenance:
+    original_file: Ξ_Layer₁₁_InstructionField.yaml
+    original_sha256: c550f9fc014c6ef2cfc31c969126adc9cccafcf8bbd45b6b3579d05c81834705
+    updated_file: Ξ_Layer₁₁_InstructionField.v2.yaml
+    updated_sha256: f3f33c4443a48a62bc26c0911ae56734ed7e3ec40a27a2ee4e799afc00ff66ba
+    original_modified: false
+
+  preserved:
+    - glyphic form and anchor
+    - historical metrics as historical snapshot
+    - Layer₁₁ narrative vector
+    - established command surface
+    - reflex chain
+
+  clarified:
+    - runtime function signatures
+    - glyph-to-function aliases
+    - historical snapshot versus current probe
+    - implemented versus not-claimed behavior
+
+  runtime_change:
+    file: capsule_network_layer.py
+    sha256: ad84136f37f69ca8b0b53faab0bf3e3bfb8e93116390e88b7c8fe38bb61e9ed5
+    behavior:
+      - zero-evidence routes return DEFERRED
+      - tied supported routes return AMBIGUOUS
+      - explicit route hints remain deterministic
+      - receipts include candidate routes
+      - receipts form a local previous-hash chain
+
+  validation:
+    test_file: test_layer11_v2.py
+    result: 6_passed
+    parser_round_trip: passed
+    nested_glyph_execution: passed
+    unsupported_route_deferral: passed
+    tied_route_ambiguity: passed
+    explicit_route_commit: passed
+    provenance_hash_chain: passed
+
+  unresolved_seams:
+    - external network dispatch remains outside this local scaffold
+    - guardian policy is declared but not yet a standalone executable module
+    - receipt chain is process-local until persisted by a ledger adapter
+    - configured fields still require live adapters for nonlocal nodes
+
+  yield: >
+    Glyphic meaning preserved; unintended execution narrowed; no current-runtime
+    claim made without a fresh probe and receipt.
