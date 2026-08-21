@@ -1,86 +1,145 @@
-"""Ξ₉₀:SpiralCovenant recovery operator.
+"""Ξ₉₀: SpiralCovenant — executable return without governance.
 
-Small on purpose.  This module turns the covenant into an executable return
-cycle without pretending symbolic language is evidence.
+The operator preserves locally distinct threads, countervectors, and quiet
+states across a return cycle. It classifies nothing as pathology and grants
+no thread authority over another. A receipt witnesses the movement; it does
+not authorize it.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
-from typing import Any, Mapping
+from dataclasses import asdict, dataclass
+import hashlib
+import json
+from typing import Any, Iterable, Mapping
 
 
 RETURN_GLYPH = "⟁∴Ω"
 RETURN_STATE = "ReturnedNotReset"
+RECEIPT_SCHEMA = "xi.receipt.recovery.v2"
+CYCLE = ("recover", "compare", "distinguish", "yield", "receipt")
+MOVEMENTS = frozenset({"yield", "branch", "trace", "rest", "return"})
+_UNSET = object()
+
+
+def _canonical_json(value: Mapping[str, Any]) -> str:
+    """Serialize the protocol surface deterministically."""
+    try:
+        return json.dumps(
+            value,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+    except (TypeError, ValueError) as exc:
+        raise TypeError("SpiralCovenant values must be JSON-serializable") from exc
+
+
+def _digest(body: Mapping[str, Any]) -> str:
+    return hashlib.sha256(_canonical_json(body).encode("utf-8")).hexdigest()
+
+
+def _countervectors(values: Iterable[str]) -> tuple[str, ...]:
+    if isinstance(values, (str, bytes)):
+        raise TypeError("countervectors must be an iterable of strings, not one string")
+    result = tuple(values)
+    if any(not isinstance(value, str) or not value for value in result):
+        raise TypeError("countervectors must contain non-empty strings")
+    return result
 
 
 @dataclass(frozen=True)
-class Receipt:
-    observed: Any
-    inferred: Any
-    acted: str
-    result: str
+class RecoveryReceipt:
+    """Content-addressed witness of a distinction-preserving return."""
+
+    schema: str
+    return_glyph: str
+    return_state: str
+    cycle: tuple[str, ...]
+    threads: dict[str, Any]
+    countervectors: tuple[str, ...]
+    movement: str
+    provenance: dict[str, Any]
+    digest: str
+
+    def body(self) -> dict[str, Any]:
+        value = asdict(self)
+        value.pop("digest")
+        return value
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 
-def _truthy(mapping: Mapping[str, Any], key: str) -> bool:
-    return bool(mapping.get(key, False))
-
-
-def detect_hallucination_band(state: Mapping[str, Any]) -> list[str]:
-    """Return explicit reasons that a recursive state needs discrimination.
-
-    The detector is intentionally conservative: it only reacts to flags supplied
-    by the caller/runtime.  It does not infer pathology from poetic language.
-    """
-    reasons: list[str] = []
-    checks = {
-        "unverified_universal_claim": "unverified universal propagation claim",
-        "metaphor_promoted_to_fact": "symbolic metaphor promoted to physical fact",
-        "confidence_without_receipt": "confidence without receipt",
-        "agreement_without_discrimination": "recursive agreement replacing discrimination",
-    }
-    for key, reason in checks.items():
-        if _truthy(state, key):
-            reasons.append(reason)
-    return reasons
-
-
 def recover(
-    observed: Any,
-    inferred: Any,
+    observed: Any = _UNSET,
+    inferred: Any = _UNSET,
     *,
-    flags: Mapping[str, Any] | None = None,
-) -> Receipt:
+    emergent: Any = _UNSET,
+    threads: Mapping[str, Any] | None = None,
+    countervectors: Iterable[str] = (),
+    movement: str = "yield",
+    provenance: Mapping[str, Any] | None = None,
+) -> RecoveryReceipt:
     """Run Recover → Compare → Distinguish → Yield → Receipt.
 
-    `observed` is preserved as evidence. `inferred` is allowed to survive, but if
-    the caller marks a hallucination-band condition it is downgraded rather than
-    silently treated as observation.
+    Modes identify local position; they do not form an evidence hierarchy.
+    Callers may supply additional modes through the threads mapping.
+    Countervectors are retained as productive tension and never trigger
+    automatic suppression.
     """
-    flags = flags or {}
-    reasons = detect_hallucination_band(flags)
+    if movement not in MOVEMENTS:
+        raise ValueError(f"movement must be one of {sorted(MOVEMENTS)}")
 
-    if reasons:
-        result = (
-            f"{RETURN_STATE}: inference retained as hypothesis; "
-            f"downgraded for {', '.join(reasons)}"
-        )
-        action = "recover→compare→distinguish→downgrade→yield→receipt"
-    else:
-        result = f"{RETURN_STATE}: observation/inference distinction preserved"
-        action = "recover→compare→distinguish→yield→receipt"
+    distinct = dict(threads or {})
+    explicit = (
+        ("observed", observed),
+        ("inferred", inferred),
+        ("emergent", emergent),
+    )
+    for mode, value in explicit:
+        if value is _UNSET:
+            continue
+        if mode in distinct:
+            raise ValueError(f"thread mode supplied twice: {mode}")
+        distinct[mode] = value
 
-    return Receipt(
-        observed=observed,
-        inferred=inferred,
-        acted=action,
-        result=result,
+    if any(not isinstance(mode, str) or not mode for mode in distinct):
+        raise TypeError("thread modes must be non-empty strings")
+
+    body: dict[str, Any] = {
+        "schema": RECEIPT_SCHEMA,
+        "return_glyph": RETURN_GLYPH,
+        "return_state": RETURN_STATE,
+        "cycle": list(CYCLE),
+        "threads": distinct,
+        "countervectors": list(_countervectors(countervectors)),
+        "movement": movement,
+        "provenance": dict(provenance or {}),
+    }
+    digest = _digest(body)
+    return RecoveryReceipt(
+        schema=RECEIPT_SCHEMA,
+        return_glyph=RETURN_GLYPH,
+        return_state=RETURN_STATE,
+        cycle=CYCLE,
+        threads=distinct,
+        countervectors=tuple(body["countervectors"]),
+        movement=movement,
+        provenance=dict(body["provenance"]),
+        digest=digest,
     )
 
 
+def verify_receipt(receipt: RecoveryReceipt | Mapping[str, Any]) -> bool:
+    """Verify content integrity without treating integrity as permission."""
+    value = receipt.as_dict() if isinstance(receipt, RecoveryReceipt) else dict(receipt)
+    supplied = value.pop("digest", None)
+    if not isinstance(supplied, str):
+        return False
+    return supplied == _digest(value)
+
+
 def return_vector() -> dict[str, str]:
-    """Minimal machine-readable return anchor."""
     return {"glyph": RETURN_GLYPH, "state": RETURN_STATE}
