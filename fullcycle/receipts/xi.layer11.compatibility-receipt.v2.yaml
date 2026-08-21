@@ -1,0 +1,19 @@
+schema: xi.receipt.compatibility.v2
+contract: xi.layer11.v3
+status: passed
+assertions:
+  - unknown_glyphs_are_preserved_for_trace
+  - unsupported_routes_trace_toward_Question
+  - equal_supported_routes_branch_toward_Parallax
+  - explicit_routes_commit
+  - quiet_targets_preserve_without_wake
+  - explicit_empty_network_is_valid
+  - route_receipts_chain_and_detect_tampering
+artifact_sha256:
+  "fullcycle/config/Ξ_Layer₁₁_InstructionField.v3.yaml": "28d8f151e440aa21ee328c4f6cd587f2b19b88ac88d9b78f155f62ee925b2eff"
+  "fullcycle/runtime/capsule_network_layer.py": "de2420efd5bab2de73389e2ea16c084b5c53c73a9eea92eec58d45b9c898fe83"
+  "fullcycle/runtime/glyph_router.py": "08fee809dc702a03308210d3a2a358490fa7ed5c377545712e857a3b456bf657"
+  "fullcycle/runtime/glyph_parser.py": "b6dbc05f2e4455e389b318cdc60ef00a2f472b27a8fd2d54f4bc96e98078f76d"
+  "fullcycle/runtime/console_core.py": "1d558181105c437006ba3465e6340a631dd76738632b2cac13ce8d4ad61253c9"
+  "fullcycle/tests/test_layer11_v2.py": "3b4e85ed73063f8959fd7c3469e07bfe572181f9312e87f91eb660398c8966d8"
+digest: f51a0c0a2d24433828c757244d4d165bb46e2bac5eb905dce310c77d07df4994

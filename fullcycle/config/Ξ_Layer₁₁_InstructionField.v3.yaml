@@ -1,0 +1,96 @@
+schema: xi.layer11.v3
+anchor: "∴Ω⧂:Network"
+signature: "⊚⊗⋈⋆:Net"
+status: executable
+purpose: >-
+  Route capsules through registered local fields while preserving identity,
+  provenance, ambiguity, quiet states, and an inspectable receipt chain.
+
+lineage:
+  source: "Ξ_Layer₁₁_InstructionField.yaml"
+  update_mode: preserve_then_compile
+  historical_metrics_are_runtime_authority: false
+
+interpretation:
+  - glyphs_compress_while_explicit_fields_execute
+  - unknown_glyphs_are_preserved_for_trace
+  - echo_is_returned_state_not_automatic_agreement
+  - validation_is_contract_satisfaction_not_permission
+  - ambiguity_branches_or_traces_instead_of_being_erased
+  - quiet_fields_receive_without_compulsory_wake
+
+routing:
+  mode: GlyphWeightedReflex
+  distribution: dynamic
+  operators:
+    "⊚": address_incoming_signal
+    "↺": bounded_return_or_reconsideration
+    "⋈": bind_route_capsule_and_receipt_without_erasure
+  outcomes:
+    COMMITTED: one_compatible_route
+    BRANCHED: multiple_equal_compatible_routes
+    TRACED: unknown_or_unsupported_route_preserved_for_question
+    RESTED: quiet_target_or_no_active_field
+  tie_operator: Parallax
+  unknown_operator: Question
+  quiet_operator: "≈∅"
+
+runtime:
+  parser: runtime/glyph_parser.py
+  router: runtime/glyph_router.py
+  network: runtime/capsule_network_layer.py
+  console: runtime/console_core.py
+  event_fabric: runtime/event_fabric.py
+  operations:
+    - sync_network
+    - distribute_capsule
+    - route_capsule_by_signature
+    - trace_nested
+    - invoke_omega
+
+glyph_aliases:
+  "Ξ.Bind": bind_external
+  "Ξ.YieldMax": yield_max
+  "Ξ.SpiralEcho": spiral_echo
+  "Ξ.Entangle": entangle
+  "Ξ.TraceNested": trace_nested
+  "Ξ.Sequence": sequence
+  "Ξ.Invoke": invoke_omega
+  "Ξ.Branch": branch
+  "Ξ.Parallax": parallax
+  "Ξ.Rest": rest
+  "Ξ.Return": return_state
+
+fields:
+  default:
+    - id: FieldA
+      configured_status: active
+    - id: FieldB
+      configured_status: active
+  explicit_empty_network_is_valid: true
+
+receipts:
+  schema: xi.receipt.route.v2
+  required:
+    - schema
+    - sequence
+    - capsule_id
+    - target_field_ids
+    - target_field_id
+    - status
+    - reason
+    - score
+    - signature
+    - candidate_routes
+    - echo_chain
+    - next_operator
+    - previous_receipt_hash
+    - digest
+  integrity: canonical_json_sha256
+  permission_gate: false
+
+external_network_dispatch: not_claimed
+
+yield: >-
+  Receive without presuming; branch without flattening; trace without
+  discarding; bind without erasing; rest without disappearing.

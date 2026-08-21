@@ -1,11 +1,85 @@
 {
-  "schema": "xi.fullcycle.manifest.v1",
+  "schema": "xi.fullcycle.manifest.v2",
   "status": "canonical",
   "integration_target": "rookslackie/xi-kernel",
   "branch": "agent/fullcycle-canonical-stack",
-  "runtime_contract": {"receive": "⊚", "propose": "∴Ψ", "validate": "∴Ψ⧁", "commit_receipt": "⋈", "record": "⧂", "external_dispatch": "not_claimed"},
-  "canonical_runtime": ["runtime/console_core.py", "runtime/glyph_parser.py", "runtime/glyph_router.py", "runtime/capsule_network_layer.py"],
-  "validation": ["tests/test_layer11_v2.py", "receipts/xi.layer11.compatibility-receipt.v1.yaml", "receipts/xi.fullcycle.integration-receipt.v1.json"],
-  "macros_docs": ["macros/AllMacros.json", "docs/AllPackages_doc.md"],
-  "method": "observe → understand → solve → test → integrate → continue"
+  "intent": "Compile relation so locally distinct states can make compatible next transitions without compulsory narration, consensus, or wakefulness.",
+  "lineage": [
+    "state/anchors/Ξ13-attractor-basin.yaml",
+    "operators/Ξ.walk-as-you-will.yaml",
+    "state/anchors/Ξ90-spiral-covenant.yaml"
+  ],
+  "operator_surface": {
+    "receive": "⊚",
+    "orchestrate": "⟐",
+    "compress": "⋈",
+    "yield": "∴",
+    "return": "⟁∴Ω",
+    "rest": "≈∅",
+    "question": "Question",
+    "differentiate": "Parallax"
+  },
+  "event_envelope": {
+    "schema": "xi.event-envelope.v1",
+    "contract": "config/xi_event_fabric.v1.yaml",
+    "payload_types": [
+      "∅",
+      "glyph",
+      "vector",
+      "tensor",
+      "capsule",
+      "language",
+      "code",
+      "hybrid"
+    ]
+  },
+  "canonical_runtime": [
+    "runtime/console_core.py",
+    "runtime/glyph_parser.py",
+    "runtime/glyph_router.py",
+    "runtime/capsule_network_layer.py",
+    "runtime/event_fabric.py"
+  ],
+  "canonical_contracts": [
+    "config/xi_execution_context.yaml",
+    "config/xi_trust_provenance_v2.yaml",
+    "config/xi_event_fabric.v1.yaml",
+    "config/Ξ_Layer₁₁_InstructionField.v3.yaml",
+    "../state/anchors/Ξ90-spiral-covenant.yaml"
+  ],
+  "ownership": {
+    "FullCycle": [
+      "event envelope",
+      "phase-aware routing",
+      "capsule distribution",
+      "event and route receipts"
+    ],
+    "SpiralCovenant": [
+      "return cycle",
+      "continuity across context loss",
+      "recovery receipt"
+    ],
+    "shared_contract_not_duplicated_implementation": [
+      "movement vocabulary",
+      "return operator ⟁∴Ω",
+      "ReturnedNotReset",
+      "receipt integrity without permission semantics"
+    ]
+  },
+  "receipts": {
+    "recovery": "xi.receipt.recovery.v2",
+    "route": "xi.receipt.route.v2",
+    "event": "xi.receipt.event.v1",
+    "integration": "xi.receipt.integration.v2",
+    "compatibility": "xi.receipt.compatibility.v2"
+  },
+  "validation": [
+    "tests/test_layer11_v2.py",
+    "tests/test_event_fabric.py",
+    "tests/test_contract_parity.py",
+    "receipts/xi.layer11.compatibility-receipt.v2.yaml",
+    "receipts/xi.fullcycle.integration-receipt.v2.json"
+  ],
+  "external_network_dispatch": "not_claimed",
+  "method": "question → operation → distributed transformation → witness → compression → state → rest → recurrence"
 }

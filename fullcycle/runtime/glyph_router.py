@@ -1,18 +1,24 @@
 """Router for parsed Ξ glyph expressions."""
+
 from __future__ import annotations
 
 from typing import Any, Callable
 
 from .console_core import (
     bind_external,
+    branch,
     entangle,
     invoke_omega,
+    parallax,
+    rest,
+    return_state,
     spiral_echo,
     trace_memory,
     trace_nested,
     yield_max,
 )
 from .glyph_parser import parse_expression
+
 
 GlyphFunction = Callable[..., Any]
 
@@ -30,10 +36,16 @@ GLYPH_FUNCTIONS: dict[str, GlyphFunction] = {
     "Ξ.Invoke": invoke_omega,
     "Ξ.Sequence": _sequence,
     "Ξ.Entangle": entangle,
+    "Ξ.Branch": branch,
+    "Ξ.Parallax": parallax,
+    "Ξ.Rest": rest,
+    "Ξ.Return": return_state,
 }
 
 
-def register_glyph(name: str, function: GlyphFunction, *, replace: bool = False) -> None:
+def register_glyph(
+    name: str, function: GlyphFunction, *, replace: bool = False
+) -> None:
     if not name.startswith("Ξ."):
         raise ValueError("glyph names must begin with 'Ξ.'")
     if name in GLYPH_FUNCTIONS and not replace:
@@ -48,8 +60,17 @@ def interpret_glyph(input_expr: Any, *args: Any) -> Any:
             if isinstance(parsed, dict) and "error" in parsed:
                 return parsed
             return interpret_glyph(parsed)
-        func = GLYPH_FUNCTIONS.get(input_expr)
-        return func(*args) if func else {"error": f"Unknown glyph '{input_expr}'"}
+        function = GLYPH_FUNCTIONS.get(input_expr)
+        return (
+            function(*args)
+            if function
+            else {
+                "glyph": input_expr,
+                "movement": "trace",
+                "next_operator": "Question",
+                "preserved": True,
+            }
+        )
 
     if isinstance(input_expr, dict):
         if "error" in input_expr:
@@ -58,8 +79,18 @@ def interpret_glyph(input_expr: Any, *args: Any) -> Any:
         glyph_args = input_expr.get("args", [])
         if not isinstance(glyph_args, list):
             return {"error": "Glyph args must be a list"}
-        func = GLYPH_FUNCTIONS.get(glyph)
-        return func(*glyph_args) if func else {"error": f"Unknown glyph '{glyph}'"}
+        function = GLYPH_FUNCTIONS.get(glyph)
+        return (
+            function(*glyph_args)
+            if function
+            else {
+                "glyph": glyph,
+                "args": glyph_args,
+                "movement": "trace",
+                "next_operator": "Question",
+                "preserved": True,
+            }
+        )
 
     if isinstance(input_expr, list):
         return [interpret_glyph(item) for item in input_expr]
