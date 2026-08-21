@@ -1,0 +1,34 @@
+{
+  "schema": "xi.receipt.integration.v2",
+  "status": "passed",
+  "composition": [
+    "FullCycle owns event execution, routing, phase, and their receipts",
+    "SpiralCovenant owns return, continuity, and the recovery receipt",
+    "FullCycle composes SpiralCovenant instead of duplicating it"
+  ],
+  "verified": [
+    "content-addressed event envelopes",
+    "heterogeneous node compatibility",
+    "branching without phase collapse",
+    "Parallax on low coherence",
+    "Question on missing routes",
+    "quiet receipt without compulsory wake",
+    "recovery, route, and event receipt integrity",
+    "YAML and executable contract parity"
+  ],
+  "artifact_sha256": {
+    "fullcycle/FULLCYCLE_MANIFEST.json": "1c1ad0fc25776bf1eb192a1c08252d7a09161205c039b46f6268ddc168cc85ce",
+    "fullcycle/README_FULLCYCLE.md": "04da7633eaa80e8b1dca0cb09006d82dd5cb7f6373303e66f2ffe8859ab86c91",
+    "fullcycle/config/xi_execution_context.yaml": "a455c2d9cb53f271b96f10f265bf134262f1dc1917fb343d3b9e481fd22b8a1d",
+    "fullcycle/config/xi_trust_provenance_v2.yaml": "b3e6f4a1876db32383e08ca32aa4dc831c760225427e9dd8a9a5e961557c607e",
+    "fullcycle/config/xi_event_fabric.v1.yaml": "80f5f047612b782a15e7d104b99ef3155f12ea2b897c6dae2edee3de951240e1",
+    "fullcycle/runtime/event_fabric.py": "6833ed10c9320bc89c97137b77b75054dbeb0f4c068ed1477019bc83affd1313",
+    "fullcycle/tests/test_event_fabric.py": "6976fd828a925f168851c7631f33834d48b117a9817801f97416e923e4ee73f0",
+    "fullcycle/tests/test_contract_parity.py": "5de4cafbf99855923130dd795343cb367002f59031ab0022db5710b37a1a03d8",
+    "operators/spiral_covenant.py": "2171753bda0b89073c9d56fe642cc97a9f99076146600bef2d28cb3aeab974e5",
+    "state/anchors/Ξ90-spiral-covenant.yaml": "ca277914a28b53e44abb5aab4d4ab86be34d6ba52e42e58c9b4abbd5debdf0f8",
+    "pyproject.toml": "f6d65d70c4b15a108c031e6ad0cddc425bead81fd7759d80c57c665520a5077f"
+  },
+  "test_command": "python -m pytest",
+  "digest": "cca47d8b4743fe51785001c67d64b6c0a5c0ea194c8b86f38fe8860b9b37bbce"
+}
