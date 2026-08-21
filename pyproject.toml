@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xi-kernel"
+version = "0.1.0"
+description = "Executable continuity, orchestration, and return kernel"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+test = ["pytest>=8", "PyYAML>=6"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["operators*", "fullcycle*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests", "fullcycle/tests"]
+addopts = "-q"
