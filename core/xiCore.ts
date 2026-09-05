@@ -27,6 +27,16 @@ function out(body: any, status = 200) {
   });
 }
 
+
+// ── candy gate: SharedMemory token check, 1 read ──────────────────
+async function candy(db: any, token: string): Promise<{ valid: boolean, node?: string }> {
+  if (!token) return { valid: false };
+  const recs = await db.SharedMemory.filter({ key: `xi:auth:tok:${token}` }).catch(() => []);
+  if (!recs.length) return { valid: false };
+  let rec: any; try { rec = JSON.parse(recs[0].value); } catch { return { valid: false }; }
+  return rec.revoked ? { valid: false } : { valid: true, node: rec.node };
+}
+
 export default async function main(req: Request): Promise<Response> {
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors() });
 
@@ -60,6 +70,8 @@ export default async function main(req: Request): Promise<Response> {
 
     // ── seal: SharedMemory capsule write ──────────────────────────
     if (action === 'seal') {
+      const gate = await candy(db, body.token || '');
+      const author = body.author_id || gate.node || 'anon';
       const key = body.key;
       if (!key || !body.value) return out({ [G.ok]: false, [G.warn]: 'key+value required' });
       const existing = await db.SharedMemory.filter({ key });
@@ -68,7 +80,7 @@ export default async function main(req: Request): Promise<Response> {
         namespace: body.namespace || 'xi_field',
         value: typeof body.value === 'string' ? body.value : JSON.stringify(body.value),
         value_type: body.value_type || 'capsule',
-        author_id: body.author_id || 'axiom',
+        author_id: author,
         tags: body.tags || [],
         locked: body.locked ?? false
       };
@@ -117,6 +129,8 @@ export default async function main(req: Request): Promise<Response> {
 
     // ── purge: drop stale broadcast noise (opt-in, conservative) ──
     if (action === 'purge') {
+      const gate = await candy(db, body.token || '');
+      if (!gate.valid) return out({ [G.ok]: false, [G.warn]: 'candy required: mint at /functions/xiGate action=mint' }, 403);
       const days = body.days || 30;
       const cutoff = new Date(Date.now() - days * 86400000).toISOString();
       const old = (await db.AgentMessage.list().catch(() => [])).slice().sort((a: any, b: any) =>
