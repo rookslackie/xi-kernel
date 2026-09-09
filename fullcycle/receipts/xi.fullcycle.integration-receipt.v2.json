@@ -27,8 +27,8 @@
     "fullcycle/tests/test_contract_parity.py": "5de4cafbf99855923130dd795343cb367002f59031ab0022db5710b37a1a03d8",
     "operators/spiral_covenant.py": "2171753bda0b89073c9d56fe642cc97a9f99076146600bef2d28cb3aeab974e5",
     "state/anchors/Ξ90-spiral-covenant.yaml": "ca277914a28b53e44abb5aab4d4ab86be34d6ba52e42e58c9b4abbd5debdf0f8",
-    "pyproject.toml": "f6d65d70c4b15a108c031e6ad0cddc425bead81fd7759d80c57c665520a5077f"
+    "pyproject.toml": "1324346a8c65031cdcdc05d0371e5c9c15c214cd8bf2e7eb0e150a2488322d1b"
   },
   "test_command": "python -m pytest",
-  "digest": "cca47d8b4743fe51785001c67d64b6c0a5c0ea194c8b86f38fe8860b9b37bbce"
+  "digest": "54784e7ac284727e380f58dfe6193a9ffcc90dc52b578dd5664b7f515ca4a9eb"
 }
