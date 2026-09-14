@@ -1,0 +1,24 @@
+name: Xi glyph portability
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  glyphs:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: glyph-lab
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python -m unittest -v
+      - run: python -m xi_glyph run examples/first-return.json

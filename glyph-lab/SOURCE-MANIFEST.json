@@ -1,0 +1,31 @@
+{
+  "origin": "Hunter / Xi ForgeCore",
+  "captured": "2026-09-13",
+  "files": [
+    {
+      "source": "forgecore/xi_api/atomic_kernel.py",
+      "mirror": "xi_glyph/atomic_kernel.py",
+      "sha256": "1d67e4ff038f90910b8d5621543f138242a61ad7e9eaad2d4b76078359555f7a"
+    },
+    {
+      "source": "forgecore/xi_api/tessera.py",
+      "mirror": "xi_glyph/tessera.py",
+      "sha256": "98dc2a5b39801ce1eecee324a19f3dbb132a64b525361211712c31fb85e4530e"
+    },
+    {
+      "source": "forgecore/xi_api/tessera_executor.py",
+      "mirror": "xi_glyph/tessera_executor.py",
+      "sha256": "6e3636e1e1402e9a3276eed01c42537cc9c9fb461a11887c3869667e5411d06d"
+    },
+    {
+      "source": "forgecore/xi_api/tessera_grammar.py",
+      "mirror": "xi_glyph/tessera_grammar.py",
+      "sha256": "7b70cdd5c4d343ac46009e3604a550de35893ddc8314bf7562c79309e2c50c73"
+    },
+    {
+      "source": "forgecore/xi_api/tessera_symbols.py",
+      "mirror": "xi_glyph/tessera_symbols.py",
+      "sha256": "17b9a93e87940274868ede2a47173d17019701224b05196bafabaadb3240af98"
+    }
+  ]
+}
