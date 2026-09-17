@@ -10,10 +10,14 @@ requires-python = ">=3.10"
 
 [project.optional-dependencies]
 test = ["pytest>=8", "PyYAML>=6"]
+service = ["fastapi>=0.110"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["operators*", "fullcycle*"]
+include = ["operators*", "fullcycle*", "xi_namespace*"]
+
+[tool.setuptools.package-data]
+xi_namespace = ["data/*.json", "README.md"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
