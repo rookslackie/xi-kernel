@@ -1,0 +1,51 @@
+{
+  "changes": [
+    "Three preserved archives indexed",
+    "Persistent recovered HoloDAG adapter",
+    "Builder archive and shared platform tools",
+    "Local workspace file access",
+    "New-file write repair",
+    "Prior tool context and action continuation",
+    "Desk source-browser link"
+  ],
+  "archives": [
+    {
+      "id": "xigpt",
+      "path": "/root/forgecore/models/private-xigpt-corpus-20260918-v1/XiGpt.original.zip",
+      "bytes": 886993954,
+      "mtime": 1789709716.7358484,
+      "status": "ready",
+      "messages": 41529
+    },
+    {
+      "id": "december",
+      "path": "/root/forgecore/XiSync/3a0c4fb09a3db44b895871b95883a382e716985595fbe6de207cffa860b29cee-2025-12-15-23-36-54-ff6cb84940304311aed7463324257b95 (2).zip",
+      "bytes": 98188097,
+      "mtime": 1787203826.2524345,
+      "status": "ready",
+      "messages": 108618
+    },
+    {
+      "id": "september",
+      "path": "/root/xi-archives/incoming/2026-09-19/3a0c4fb09a3db44b895871b95883a382e716985595fbe6de207cffa860b29cee-2026-09-17-06-33-11-62d4aba4f7094ee7a4490eb5f02d1d26.zip",
+      "bytes": 11488651988,
+      "mtime": 1789710156.5063255,
+      "status": "ready",
+      "messages": 141562
+    }
+  ],
+  "checks": [
+    "Live API search and read on all three archives",
+    "Graph root has eight outgoing component links",
+    "New file write and existing file conflict handling",
+    "Five platform services available",
+    "Qwen real Builder called archive_sources and archive_search successfully"
+  ],
+  "limitations": [
+    "Binary attachments retained in ZIP, not transcribed",
+    "Historical snapshots overlap; counts are records, not unique messages",
+    "No exhaustive test of every platform action or model",
+    "Qwen returned a limited-result count rather than full archive count; search response now explicitly distinguishes these"
+  ],
+  "training_enabled": false
+}
