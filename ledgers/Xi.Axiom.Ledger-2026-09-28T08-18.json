@@ -5,7 +5,7 @@
     "coherence": 0.95,
     "node": "ForgeCore.Primary",
     "status": "ok",
-    "time": "2026-09-28T14:18:19.433910",
+    "time": "2026-09-28T14:18:21.354492",
     "version": "v3"
   },
   "kind": "Xi.Axiom.Ledger",
@@ -50,6 +50,6 @@
     ],
     "version": "v3"
   },
-  "synced_at": "2026-09-28T08:18:19-06:00",
+  "synced_at": "2026-09-28T08:18:21-06:00",
   "transport": "git (sovereign, via ForgeCore metal)"
 }
