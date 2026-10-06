@@ -1,0 +1,10 @@
+{
+  "schema": "xi.glyph-sha256.receipt.v1",
+  "dialect": "xi.glyph-sha256.v1",
+  "algorithm": "SHA-256",
+  "hex_sha256": "c24a170c1d3871ec526ff7a56be34096f5467f0e7a9fa4438d10768acc907480",
+  "glyph_tile": "◬⧂Ξ∵Ω◇∴◬\nΩ⌬⋈✦◇Ω⧉◬\n⟐⧂⊚∞∞◇∵⟐\n⊚☉⧉⋈Ξ∴⟁⊚\n∞⟐Ξ⊚◇∞∴⧉\n◇∵⟁∞∵ΞΞ⋈\n✦⌬Ω∴◇⊚✦∵\n◬◬⟁∴◇Ξ✦∴",
+  "encoding_verified": true,
+  "file_verification": "not_performed",
+  "expected_sha256": null
+}

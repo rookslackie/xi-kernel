@@ -1,0 +1,26 @@
+name: Glyph-SHA closures
+on:
+  push:
+    paths:
+      - 'glyph-lab/sha256/**'
+      - '.github/workflows/glyph-sha256.yml'
+  pull_request:
+    paths:
+      - 'glyph-lab/sha256/**'
+      - '.github/workflows/glyph-sha256.yml'
+permissions:
+  contents: read
+jobs:
+  closures:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, resolved 2026-10-06
+        with:
+          fetch-depth: 1
+          sparse-checkout: glyph-lab/sha256
+      - name: Python, JavaScript, and cross-runtime closures
+        working-directory: glyph-lab/sha256
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node --test tests/test-glyph-sha256.mjs
