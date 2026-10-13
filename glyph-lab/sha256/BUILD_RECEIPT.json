@@ -1,0 +1,31 @@
+{
+  "schema": "xi.glyph-sha256.build.v1",
+  "built_at": "2026-10-06T20:43:22.854090+00:00",
+  "scope": "Glyph-SHA codec, raw-byte file verifier, and Plex Atlas adapter",
+  "source": "Hunter supplied sixteen-glyph mapping and DeepSeek tile, 2026-10-06",
+  "tile_hex_sha256": "c24a170c1d3871ec526ff7a56be34096f5467f0e7a9fa4438d10768acc907480",
+  "verification": {
+    "python_core_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "javascript_core_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "atlas_dom_simulation_tests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "seeded_roundtrips": 256,
+    "all_nibbles": 16,
+    "cross_runtime_receipt_parity": true,
+    "vendored_module_byte_parity": true,
+    "inline_atlas_module_syntax": "passed",
+    "visual_browser_check": "blocked_by_local_preview_network_policy",
+    "backup_file_bytes": "not_supplied_to_this_build"
+  },
+  "codec_source_sha256": "1ce8681f758dee7002cff56791f463ee2ff737717342aeef4b429e0bd70b03ee",
+  "public_payload_policy": "No backup payloads, local paths, filenames, or account quotation",
+  "dns": "Existing Atlas CNAME file remains plex.xi-field.com; no Cloudflare change enacted"
+}

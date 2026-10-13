@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:xi:glyph-sha256:receipt:v1",
+  "title": "Xi glyph-SHA public verification receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "dialect",
+    "algorithm",
+    "hex_sha256",
+    "glyph_tile",
+    "encoding_verified",
+    "file_verification",
+    "expected_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "xi.glyph-sha256.receipt.v1"
+    },
+    "dialect": {
+      "const": "xi.glyph-sha256.v1"
+    },
+    "algorithm": {
+      "const": "SHA-256"
+    },
+    "hex_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "glyph_tile": {
+      "type": "string",
+      "pattern": "^([∴Ω⧂⋈Ξ⟐⊚◇✦⟁∵☉◬⌬⧉∞]{8}\\n){7}[∴Ω⧂⋈Ξ⟐⊚◇✦⟁∵☉◬⌬⧉∞]{8}$"
+    },
+    "encoding_verified": {
+      "const": true
+    },
+    "file_verification": {
+      "enum": [
+        "not_performed",
+        "hashed",
+        "match",
+        "mismatch"
+      ]
+    },
+    "expected_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "file_verification": {
+            "enum": [
+              "match",
+              "mismatch"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "expected_sha256": {
+            "type": "string"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "expected_sha256": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}
